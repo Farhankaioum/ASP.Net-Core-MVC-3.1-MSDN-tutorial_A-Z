@@ -24,9 +24,11 @@ namespace ContosoUniversity.Models
             var course = _context.Courses
                     .Include(c => c.Department)
                     .AsNoTracking();
+            
             return View(course);
             //var schoolContext = _context.Courses.Include(c => c.Department);
             //return View(await schoolContext.ToListAsync());
+            
         }
 
         // GET: Courses/Details/5
@@ -183,6 +185,7 @@ namespace ContosoUniversity.Models
             PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
             return View(courseToUpdate);
         }
+
         private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
         {
             var departmentsQuery = from d in _context.Departments
