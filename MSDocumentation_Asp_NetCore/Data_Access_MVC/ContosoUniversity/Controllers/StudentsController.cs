@@ -84,7 +84,7 @@ namespace ContosoUniversity.Controllers
 
             var student = await _context.Students
                 .Include(s => s.Enrollments)
-                .ThenInclude(e => e.Course)
+                    .ThenInclude(e => e.Course)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
 
@@ -127,6 +127,7 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Students/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -145,7 +146,7 @@ namespace ContosoUniversity.Controllers
         // POST: Students/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-
+        [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("ID,EnrollmentDate,FirstMidName,LastName")] Student student)
         {
             if (id != student.ID)
